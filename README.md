@@ -1,5 +1,5 @@
 # Learn
-Contains multiple projects and languages for learning purposes
+Projects involving the learning of the Elixir programming language
 
 # Courses
 - Elixir for Beginners (https://www.udemy.com/course/elixir-for-beginners/)
