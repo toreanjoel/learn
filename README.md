@@ -1,2 +1,2 @@
 # learn
-houses multiple projects and languages when learning
+Contains multiple projects and languages for learning purposes
