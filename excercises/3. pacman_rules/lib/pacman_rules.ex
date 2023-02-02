@@ -32,12 +32,46 @@ defmodule PacmanRules do
   """
 
   @doc """
-  Hello world.
+    Can eat ghost - check power_up, check touching ghost
 
-  ## Examples
-
-      iex> PacmanRules.hello()
-      :world
-
+    ## Examples
+      iex> PacmanRules.eat_ghost?(false, true)
+      false
   """
+  def eat_ghost?(power_up, touching_ghost) do
+    power_up && touching_ghost
+  end
+
+  @doc """
+    Should add to score - check power_up, check touching dot
+
+    ## Examples
+      iex> PacmanRules.score?(true, true)
+      true
+  """
+  def score?(power_up, dot) do
+    power_up || dot
+  end
+
+  @doc """
+    Has lost - check power_up, check touching ghost
+
+    ## Examples
+      iex> PacmanRules.lose?(false, true)
+      true
+  """
+  def lose?(power_up, touching_ghost) do
+    power_up == false && touching_ghost
+  end
+
+  @doc """
+    Has won - check all dots eaten, check power_up, check touching ghost
+
+    ## Examples
+      iex> PacmanRules.win?(false, true, false)
+      false
+  """
+  def win?(all_dots_eaten, power_up, touching_ghost) do
+    !(lose?(power_up, touching_ghost)) && all_dots_eaten
+  end
 end
