@@ -58,4 +58,94 @@ defmodule Secrets do
   # => 14
   """
 
+  @doc """
+   Take a value and return a function with the value that will be added to the func
+
+   ## Example
+    iex> func = Secrets.secret_add(5)
+    iex> func.(3)
+    8
+  """
+  def secret_add(value) do
+    fn item -> item + value end
+  end
+
+  @doc """
+   Take a value and return a function with the value that will be subtracted to the func
+
+   ## Example
+    iex> func = Secrets.secret_subtract(5)
+    iex> func.(3)
+    -2
+  """
+  def secret_subtract(value) do
+    fn item -> item - value end
+  end
+
+  @doc """
+   Take a value and return a function with the value that will be multiplied to the func
+
+   ## Example
+    iex> func = Secrets.secret_multiply(5)
+    iex> func.(3)
+    15
+  """
+  def secret_multiply(value) do
+    fn item -> item * value end
+  end
+
+  @doc """
+   Take a value and return a function with the value that will be multiplied to the func
+
+   ## Example
+    iex> func = Secrets.secret_divide(5)
+    iex> func.(3)
+    0
+  """
+  def secret_divide(value) do
+    fn item -> div(item, value) end
+  end
+
+  @doc """
+   Take a value and return a function with the value that will be checked (AND) bitwise to the func
+
+   Compare each bit against both values and check if they are both true (1) keep it true or make it false (0)
+   ## Example
+    iex> func = Secrets.secret_and(15)
+    iex> func.(8)
+    8
+  """
+  def secret_and(value) do
+    fn item -> Bitwise.band(item, value) end
+  end
+
+  @doc """
+   Take a value and return a function with the value that will be checked (XOR) bitwise to the func
+
+   Compare each bit against both values and check if corrosponding bit is not the same and one of them are atleast 1 else 0
+   ## Example
+    iex> func = Secrets.secret_xor(15)
+    iex> func.(8)
+    7
+  """
+  def secret_xor(value) do
+    fn item -> Bitwise.bxor(item, value) end
+  end
+
+  @doc """
+   Pass a 2 functions, return a function that will allow passing a value that will be passed to first function.
+   Take the result of that function and pass it to the other function as the result
+
+   ## Example
+    iex> func1 = fn value -> value + 1 end
+    iex> func2 = fn value -> value - 1 end
+    iex> both = Secrets.secret_combine(func1, func2)
+    iex> both.(10)
+  """
+  def secret_combine(func1, func2) do
+    fn input ->
+      func = func1.(input)
+      func2.(func)
+    end
+  end
 end
