@@ -1,4 +1,4 @@
-# learn
-Contains multiple projects and languages for learning purposes
+# CS OSSU 
+Training and Upskilling using OSSU resources.
 
-Look through the branches of the repo to look at the current running learning branches
+https://github.com/ossu/computer-science
