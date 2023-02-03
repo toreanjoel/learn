@@ -62,4 +62,70 @@ defmodule LanguageList do
   LanguageList.functional_list?(language_list)
   # => true
   """
+
+  @doc """
+    Create and return an empty list
+
+    ## Example
+      iex> LanguageList.new()
+      []
+  """
+  def new() do
+    []
+  end
+
+  @doc """
+    Prepend item to a list - fast appending to list
+
+    ## Example
+      iex> LanguageList.add([1, 2, 4, 5], 6)
+      [6, 1, 2, 4, 5]
+  """
+  def add(list, item) do
+    [item] ++ list
+  end
+
+  @doc """
+    Remove the first item in a list
+
+    ## Example
+      iex> LanguageList.remove(["test", "items", "in", "a", "list"])
+      ["items", "in", "a", "list"]
+  """
+  def remove([_head | tail]) do
+    tail
+  end
+
+  @doc """
+    Return the first item in a list
+
+    ## Example
+      iex> LanguageList.first([2, 5, 3, 6])
+      2
+  """
+  def first([head | _tail]) do
+    head
+  end
+
+  @doc """
+    Count the length of a list
+
+    ## Example
+      iex> LanguageList.count(["items", "in", "a", "list"])
+      4
+  """
+  def count(list) do
+    length(list)
+  end
+
+  @doc """
+    Check if "Elixir" is part of the list - casing matters
+
+    ## Example
+      iex> LanguageList.functional_list?(["items", "in", "a", "list"])
+      false
+  """
+  def functional_list?(list) do
+    Enum.member?(list, "Elixir")
+  end
 end
