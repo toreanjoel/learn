@@ -9,7 +9,7 @@ Projects involving the learning of the Elixir programming language
 - Elixir Programming for Beginners (https://www.udemy.com/course/elixir-for-beginners/)
 - The complete Elixir and Phoenix Bootcamp (https://www.udemy.com/course/the-complete-elixir-and-phoenix-bootcamp-and-tutorial/)
 
-# Exercises ![0%](https://progress-bar.dev/2)
+# Exercises ![0%](https://progress-bar.dev/8.5)
 - https://exercism.org/
 
 # Resources
