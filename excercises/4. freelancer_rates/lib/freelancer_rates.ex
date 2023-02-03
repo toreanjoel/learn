@@ -42,24 +42,53 @@ defmodule FreelancerRates do
   The returned number of days should be rounded down (take the floor) to one decimal place.
   """
 
-  @hourly_rate 8.0
+  @hours 8.0
   @billable_days 22
 
+  @doc """
+    The daily rate based on a full 8h working day
+
+    ## Example
+      iex> FreelancerRates.daily_rate(100)
+      800.0
+  """
   def daily_rate(rate) do
-    rate * @hourly_rate
+    rate * @hours
   end
 
+  @doc """
+    Discount in percent based off an ammount
+
+    ## Example
+      iex> FreelancerRates.apply_discount(150, 10)
+      135.0
+  """
   def apply_discount(amount, discount) do
     discount = amount * (discount / 100)
     amount - discount
   end
 
+  @doc """
+    Monthly cost based off a 22 day cycle and 8h days from an inputted rate per hour
+    Discount attatched to the overall amount if needed
+
+    ## Example
+      iex> FreelancerRates.monthly_rate(77, 10.5)
+      12130
+  """
   def monthly_rate(rate, discount) do
     monthly_rate = daily_rate(rate) * @billable_days
     discount = apply_discount(monthly_rate, discount)
     ceil(discount)
   end
 
+  @doc """
+    Budget assigned to a task and the hourly rate and discount to work out days
+
+    ## Example
+      iex> FreelancerRates.days_in_budget(20000, 80, 11.0)
+      35.1
+  """
   def days_in_budget(budget, h_rate, discount) do
     rate = apply_discount(daily_rate(h_rate), discount)
     Float.floor(budget / rate, 1)
