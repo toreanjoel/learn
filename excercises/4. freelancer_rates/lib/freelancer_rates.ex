@@ -41,4 +41,27 @@ defmodule FreelancerRates do
   # => 35.1
   The returned number of days should be rounded down (take the floor) to one decimal place.
   """
+
+  @hourly_rate 8.0
+  @billable_days 22
+
+  def daily_rate(rate) do
+    rate * @hourly_rate
+  end
+
+  def apply_discount(amount, discount) do
+    discount = amount * (discount / 100)
+    amount - discount
+  end
+
+  def monthly_rate(rate, discount) do
+    monthly_rate = daily_rate(rate) * @billable_days
+    discount = apply_discount(monthly_rate, discount)
+    ceil(discount)
+  end
+
+  def days_in_budget(budget, h_rate, discount) do
+    rate = apply_discount(daily_rate(h_rate), discount)
+    Float.floor(budget / rate, 1)
+  end
 end
