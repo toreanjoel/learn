@@ -25,6 +25,7 @@ defmodule FreelancerRates do
 
   FreelancerRates.apply_discount(150, 10)
   # => 135.0
+
   The returned value should always be a float, not rounded in any way.
 
   3. Calculate the monthly rate, given an hourly rate and a discount
@@ -32,6 +33,7 @@ defmodule FreelancerRates do
 
   FreelancerRates.monthly_rate(77, 10.5)
   # => 12130
+
   The returned monthly rate should be rounded up (take the ceiling) to the nearest integer.
 
   4. Calculate the number of workdays given a budget, hourly rate and discount
@@ -39,6 +41,7 @@ defmodule FreelancerRates do
 
   FreelancerRates.days_in_budget(20000, 80, 11.0)
   # => 35.1
+
   The returned number of days should be rounded down (take the floor) to one decimal place.
   """
 
