@@ -13,6 +13,7 @@ defmodule LogLevel do
   4	error	yes
   5	fatal	no
   ?	unknown	-
+
   1. Return the logging code label
   Implement the LogLevel.to_label/2 function.
   It should take an integer code and a boolean flag telling you if the log comes from a legacy app,
@@ -24,6 +25,7 @@ defmodule LogLevel do
 
   LogLevel.to_label(0, true)
   # => :unknown
+
   2. Send an alert
   Somebody has to be notified when unexpected things happen.
 
