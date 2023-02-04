@@ -18,23 +18,28 @@ defmodule GuessingGame do
 
   GuessingGame.compare(5, 5)
   # => "Correct"
+
   2. Make the response when the guess is greater than the secret number
   Modify the compare function to respond to guesses that are higher than the secret number.
 
   GuessingGame.compare(5, 8)
   # => "Too high"
+
   3. Make the response when the guess is less than the secret number
   Modify the compare function to respond to guesses that are lower than the secret number.
 
   GuessingGame.compare(5, 2)
   # => "Too low"
+
   4. Make the responses when the guess is one more or one less than the secret number
   Modify the compare function to respond to guesses that are close to the secret number.
 
   GuessingGame.compare(5, 6)
   # => "So close"
+
   GuessingGame.compare(5, 4)
   # => "So close"
+
   5. Make the response when there is no guess
   Modify the compare function to respond to a lack of guess.
 
