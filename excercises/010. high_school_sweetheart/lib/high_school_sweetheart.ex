@@ -24,16 +24,19 @@ defmodule HighSchoolSweetheart do
 
   HighSchoolSweetheart.first_letter("Jane")
   # => "J"
+
   2. Format the first letter as an initial
   Implement the HighSchoolSweetheart.initial/1 function. It should take a name and return its first letter, uppercase, followed by a dot. Make sure to reuse HighSchoolSweetheart.first_letter/1 that you defined in the previous step.
 
   HighSchoolSweetheart.initial("Robert")
   # => "R."
+
   3. Split the full name into the first name and the last name
   Implement the HighSchoolSweetheart.initials/1 function. It should take a full name, consisting of a first name and a last name separated by a space, and return the initials. Make sure to reuse HighSchoolSweetheart.initial/1 that you defined in the previous step.
 
   HighSchoolSweetheart.initials("Lance Green")
   # => "L. G."
+
   4. Put the initials inside of the heart
   Implement the HighSchoolSweetheart.pair/2 function. It should take two full names and return the initials. Make sure to reuse HighSchoolSweetheart.initials/1 that you defined in the previous step.
 
@@ -56,4 +59,62 @@ defmodule HighSchoolSweetheart do
   # ""
   """
 
+  @doc """
+    Return the first letter of a word removing the spaces around it
+
+    ## Example
+      iex> HighSchoolSweetheart.first_letter("Something goes here")
+      "S"
+  """
+  def first_letter(str) do
+    str |> String.trim |> String.first
+  end
+
+  @doc """
+    Return the initial or first letter capitalized with a fullstop
+
+    ## Example
+      iex> HighSchoolSweetheart.initial("This is a test")
+      "T."
+  """
+  def initial(str) do
+    string = first_letter(str) |> String.capitalize
+    string <> "."
+  end
+
+  @doc """
+    Return the first two characters of a split string and return initials with fullstop
+
+    ## Example
+      iex> HighSchoolSweetheart.initials("Someone here")
+      "S. H."
+  """
+  def initials(str) do
+    [first, last] = String.split(str)
+    "#{initial(first)} #{initial(last)}"
+  end
+
+  @doc """
+    Return the concatinated first and last name initials of two people
+  """
+  def pair(name_one, name_two) do
+    first = initials(name_one)
+    second = initials(name_two)
+  """
+       ******       ******
+     **      **   **      **
+   **         ** **         **
+  **            *            **
+  **                         **
+  **     #{first}  +  #{second}     **
+   **                       **
+     **                   **
+       **               **
+         **           **
+           **       **
+             **   **
+               ***
+                *
+  """
+  end
 end
