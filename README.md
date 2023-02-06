@@ -15,4 +15,3 @@ Projects involving the learning of the Elixir programming language
 # Resources
 - https://elixirschool.com/en
 - https://elixir-lang.org/docs.html
-https://www.udemy.com/course/elixir-programming-for-beginners/
