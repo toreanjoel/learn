@@ -1,8 +1,7 @@
 # Learn
 Projects involving the learning of the Elixir programming language
 
-# Courses ![15%](https://progress-bar.dev/15)
-- Elixir Programming for Beginners (https://www.udemy.com/course/elixir-programming-for-beginners/)
+# Courses ![18%](https://progress-bar.dev/15)
 - Elixir for Beginners (https://www.udemy.com/course/elixir-for-beginners/)
 - The complete Elixir and Phoenix Bootcamp (https://www.udemy.com/course/the-complete-elixir-and-phoenix-bootcamp-and-tutorial/)
 - Elixir and Phoenix: Read World Functional Programming (https://www.udemy.com/course/elixir-phoenix-real-world-functional-programming/)
