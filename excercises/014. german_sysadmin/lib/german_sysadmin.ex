@@ -42,39 +42,45 @@ defmodule GermanSysadmin do
   # => 'caecilie_weiss'
   """
 
-  @substitute %{
-    228 => 'ae',
-    228 => 'ae',
-    246 => 'oe',
-    252 => 'ue',
-    223 => 'ss'
-  }
+  @doc """
+   Charlist empty or empty list returns empty charlist - nothing which will be a list
+   as there is no items to represent a character as a charlist
 
-  @lower_case_char 97..122
-  @underscore_char 95..95
+   ## Example
+    iex> GermanSysadmin.sanitize('')
+    []
+    iex> GermanSysadmin.sanitize('test')
+    'test'
+    iex> GermanSysadmin.sanitize('helä wörlds')
+    'helaewoerlds'
+  """
+  def sanitize(''), do: ''
+  def sanitize([head | tail]) do
+    # conditional against the taken out character
+    char = case head do
+      # check if character code matches
+      # The ? converts the value to its numeric character code
+      ?ä -> 'ae'
+      ?ö -> 'oe'
+      ?ü -> 'ue'
+      ?ß -> 'ss'
+      # match value and assign it against X
+      # check if x Exists in a range - see above
+      # range is based off the unicaode numeric values
+      # return the value as a 1 indice elem
+      # check if an underscore chracter
+      # return the value charlist item, will be a 1 elem list being a charlist
+      x when (x >= ?a and x <= ?z) or (x === ?_) -> [x]
+      #  return nothing or empty charlist
+      # will match against other function
+      _ -> ''
+    end
 
-  def sanitize(char_list) do
-    value = Enum.filter(
-      substitute_wrapper(to_charlist(char_list)),
-      fn i ->
-        (check_range(i) || check_range(i, @underscore_char)) &&
-        i end)
-
-  end
-
-  defp check_range(char, range \\ @lower_case_char) do
-    char in range
-  end
-
-  def substitute_wrapper(chars) do
-    Enum.map(chars, fn item -> {
-      case @substitute[item] do
-        nil -> [item]
-        _ -> @substitute[item]
-      end
-    }
-    end)
-      |> Enum.map(fn c -> elem(c, 0) end)
-      |> Enum.concat()
+    # After each character is checked, merge the charlist character with the rest
+    # rest = passing the remaining and recustively adding and checking each character in line
+    char ++ sanitize(tail)
   end
 end
+
+
+[104,101,108,97,101,119,111,101,114,108,100,115]
