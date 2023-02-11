@@ -81,6 +81,3 @@ defmodule GermanSysadmin do
     char ++ sanitize(tail)
   end
 end
-
-
-[104,101,108,97,101,119,111,101,114,108,100,115]

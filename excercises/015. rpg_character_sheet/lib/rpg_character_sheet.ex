@@ -11,6 +11,7 @@ Implement the RPG.CharacterSheet.welcome/0 function. It should print a welcome m
 RPG.CharacterSheet.welcome()
 # > Welcome! Let's fill out your character sheet together.
 # => :ok
+
 2. Ask for the character's name
 Implement the RPG.CharacterSheet.ask_name/0 function. It should print a question, wait for an answer, and return the answer without leading and trailing whitespace.
 
@@ -18,6 +19,7 @@ RPG.CharacterSheet.ask_name()
 # > What is your character's name?
 # < Mathilde
 # => "Mathilde"
+
 3. Ask for the character's class
 Implement the RPG.CharacterSheet.ask_class/0 function. It should print a question, wait for an answer, and return the answer without leading and trailing whitespace.
 
@@ -25,6 +27,7 @@ RPG.CharacterSheet.ask_class()
 # > What is your character's class?
 # < healer
 # => "healer"
+
 4. Ask for the character's level
 Implement the RPG.CharacterSheet.ask_level/0 function. It should print a question, wait for an answer, and return the answer as an integer.
 
@@ -46,4 +49,34 @@ RPG.CharacterSheet.run()
 # > Your character: %{class: "healer", level: 2, name: "Mathilde"}
 # => %{class: "healer", level: 2, name: "Mathilde"}
   """
+
+  def welcome do
+    IO.puts("Welcome! Let's fill out your character sheet together.")
+  end
+
+  def ask_name do
+    ask("What is your character's name?")
+  end
+
+  def ask_class do
+    ask("What is your character's class?")
+  end
+
+  @base 10
+  def ask_level do
+    ask("What is your character's level?")
+      |> String.to_integer(@base)
+  end
+
+  def run do
+    welcome()
+    name = ask_name()
+    class = ask_class()
+    level = ask_level()
+
+    %{class: class, level: level, name: name}
+  end
+
+  # Heler that does the IO.get with requested string
+  defp ask(string), do: IO.gets(string)  |> String.trim
 end
