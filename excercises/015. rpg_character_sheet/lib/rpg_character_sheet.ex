@@ -74,9 +74,10 @@ RPG.CharacterSheet.run()
     class = ask_class()
     level = ask_level()
 
-    %{class: class, level: level, name: name}
+    sheet = %{class: class, level: level, name: name}
+    IO.inspect(sheet, label: "Your character")
   end
 
   # Heler that does the IO.get with requested string
-  defp ask(string), do: IO.gets(string)  |> String.trim
+  defp ask(string), do: IO.gets(string <> "\n")  |> String.trim
 end
