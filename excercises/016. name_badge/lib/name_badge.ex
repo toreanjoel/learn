@@ -31,6 +31,23 @@ defmodule NameBadge do
   NameBadge.print(nil, "Rachel Miller", nil)
   # => "Rachel Miller - OWNER"
   """
+
+  @doc """
+    Print id name and title, with fallbacks to no id and owner for no title
+
+    ## Example
+      iex> NameBadge.print(1, "Fullname", "title")
+      "[1] - Fullname - TITLE"
+
+      iex> NameBadge.print(nil, "Fullname", "title")
+      "Fullname - TITLE"
+
+      iex> NameBadge.print(1, "Fullname", nil)
+      "[1] - Fullname - OWNER"
+
+      iex> NameBadge.print(nil, "Fullname", nil)
+      "Fullname - OWNER"
+  """
   @owner "owner"
   def print(id, name, label) do
     label = String.upcase(if is_nil(label), do: @owner, else: label)
