@@ -84,10 +84,38 @@ defmodule WineCellar do
     red: "Fermented with skin contact using dark-colored grapes.",
     rose: "Fermented with some skin contact, but not enough to qualify as a red wine."
   ]
+
+  @doc """
+    Return keyword list of descriptions
+
+    ## Example
+      iex> WineCellar.explain_colors()
+      [
+        white: "Fermented without skin contact.",
+        red: "Fermented with skin contact using dark-colored grapes.",
+        rose: "Fermented with some skin contact, but not enough to qualify as a red wine."
+      ]
+  """
   def explain_colors do
     @color_explain
   end
 
+  @doc """
+    Filter keyword list against optional options
+
+    ## Example
+      iex> cellar = [red: {"name #1", 2000, "country 1"},green: {"name #2", 1993, "country 2"},blue: {"name #3", 1560, "country 3"},green: {"name #4", 1992, "country 4"}]
+      iex> WineCellar.filter(cellar, :green)
+      iex> [{"name #2", 1993, "country 2"}, {"name #4", 1992, "country 4"}]
+
+      iex> cellar = [red: {"name #1", 2000, "country 1"},green: {"name #2", 1993, "country 2"},blue: {"name #3", 1560, "country 3"},green: {"name #4", 1992, "country 4"}]
+      iex> WineCellar.filter(cellar, :green, year: 1992)
+      iex> [{"name #4", 1992, "country 4"}]
+
+      iex> cellar = [red: {"name #1", 2000, "country 1"},green: {"name #2", 1993, "country 2"},blue: {"name #3", 1560, "country 3"},green: {"name #4", 1992, "country 4"}]
+      iex> WineCellar.filter(cellar, :green, country: "country 2")
+      iex> [{"name #2", 1993, "country 2"}]
+  """
   def filter(cellar, color, opts \\ []) do
     filtered = Keyword.get_values(cellar, color)
 
