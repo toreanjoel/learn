@@ -77,4 +77,26 @@ defmodule TakeANumber do
   PIDs
   Process identifiers are their own data type. They function as mailbox addresses - if you have a process's PID, you can send a message to that process. PIDs are usually created indirectly, as a return value of functions that create new processes, like spawn.
   """
+
+  @state 0
+  def start() do
+    spawn(fn ->
+      listen()
+    end)
+  end
+
+  def listen(state \\ @state) do
+    receive do
+      {:report_state, sender} ->
+        send(sender, state)
+        IO.inspect(state)
+        listen(state)
+      {:take_a_number, sender} ->
+        send(sender, state + 1)
+        IO.inspect(state + 1)
+        listen(state + 1)
+      :stop -> exit(:ending)
+      _ -> listen(state)
+    end
+  end
 end
